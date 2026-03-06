@@ -14,7 +14,7 @@ jobs:
       - name: Fetch Figma Export
         run: |
           curl -H "X-Figma-Token: ${{ secrets.FIGMA_TOKEN }}" \
-          "https://api.figma.com/v1/files/1397162179771582259" \
+          "https://api.figma.com/v1/files/6t2QvcqZEU0444Pmc2KwzA" \
           -o figma-export.json
           
       - name: Commit changes
