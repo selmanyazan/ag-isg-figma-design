@@ -1,0 +1,26 @@
+
+name: Figma Sync
+on:
+  schedule:
+    - cron: '0 9 * * *'  # Her gün 09:00'da
+  workflow_dispatch:      # Manuel tetikleme de olsun
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Fetch Figma Export
+        run: |
+          curl -H "X-Figma-Token: ${{ secrets.FIGMA_TOKEN }}" \
+          "https://api.figma.com/v1/files/1397162179771582259" \
+          -o figma-export.json
+          
+      - name: Commit changes
+        run: |
+          git config user.name "figma-bot"
+          git config user.email "bot@deka.com"
+          git add figma-export.json
+          git diff --staged --quiet || git commit -m "chore: Figma sync $(date +%Y-%m-%d)"
+          git push
