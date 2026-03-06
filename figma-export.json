@@ -1,1 +1,1 @@
-{"status":404,"err":"Not found"}
+{"status":400,"err":"File type not supported by this endpoint"}
