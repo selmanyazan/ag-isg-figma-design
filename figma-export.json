@@ -1,1 +1,1 @@
-{"status":403,"err":"Invalid token"}
+{"status":404,"err":"Not found"}
